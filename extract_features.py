@@ -46,7 +46,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    '--output_extension', type=str, default='.d2-net',
+    '--output_extension', type=str, default='.npz',
     help='extension for the output'
 )
 parser.add_argument(
@@ -162,15 +162,15 @@ for line in tqdm(lines, total=len(lines)):
     keypoints = keypoints[:, [1, 0, 2]]
 
     if args.output_type == 'npz':
-        with open(path + args.output_extension, 'wb') as output_file:
+        with open(args.output_folder + '/' + path.split('/')[-1] + args.output_extension, 'wb') as output_file:
             np.savez(
-                output_file,
+                output_file + '.' + ,
                 keypoints=keypoints,
                 scores=scores,
                 descriptors=descriptors
             )
     elif args.output_type == 'mat':
-        with open(path + args.output_extension, 'wb') as output_file:
+        with open(args.output_folder + '/' + path.split('/')[-1] + args.output_extension, 'wb') as output_file:
             scipy.io.savemat(
                 output_file,
                 {
