@@ -72,6 +72,11 @@ parser.add_argument(
 )
 parser.set_defaults(cpu=False)
 
+parser.add_argument(
+    '--output_folder', type=str, default='',
+    help='output folder'
+)
+
 args = parser.parse_args()
 
 # CUDA
